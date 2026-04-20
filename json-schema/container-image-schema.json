@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apptainer/main/json-schema/container-image-schema.json",
+  "title": "ContainerImage",
+  "description": "An Apptainer container image (SIF file) for HPC and scientific computing",
+  "type": "object",
+  "properties": {
+    "imageId": {
+      "type": "string",
+      "description": "Unique container image identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Container image name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Container image version"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source URI (docker://image, library://image, oras://, etc.)"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "SIF",
+        "sandbox"
+      ],
+      "description": "Container image format"
+    },
+    "size": {
+      "type": "integer",
+      "description": "Image size in bytes"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Image creation timestamp"
+    },
+    "sha256": {
+      "type": "string",
+      "description": "SHA-256 hash of the image for verification"
+    }
+  },
+  "required": [
+    "imageId",
+    "name",
+    "format"
+  ]
+}

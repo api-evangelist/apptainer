@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "apptainer": "https://apptainer.org/vocab#",
+    "imageId": "schema:identifier",
+    "name": "schema:name",
+    "version": "schema:version",
+    "source": "schema:url",
+    "format": "schema:encodingFormat",
+    "size": "schema:contentSize",
+    "createdAt": "schema:dateCreated",
+    "sha256": "apptainer:sha256",
+    "instanceId": "schema:identifier",
+    "status": "apptainer:status",
+    "startedAt": "schema:startDate",
+    "stoppedAt": "schema:endDate"
+  }
+}

@@ -1,0 +1,80 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Apptainer HPC Container Management
+  description: >-
+    Workflow capability for managing HPC containers using Apptainer for scientific
+    computing and research workloads. Supports researchers pulling container images
+    and running reproducible computational experiments.
+  tags:
+    - Apptainer
+    - HPC
+    - Scientific Computing
+    - Containers
+    - Research
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      APPTAINER_API_TOKEN: APPTAINER_API_TOKEN
+
+capability:
+  consumes:
+    - import: apptainer
+      location: ./shared/apptainer-api.yaml
+
+  exposes:
+    - type: mcp
+      port: 9090
+      namespace: hpc-containers-mcp
+      transport: http
+      description: MCP server for AI-assisted HPC container management with Apptainer.
+      tools:
+        - name: list-hpc-images
+          description: Lists Apptainer container images optimized for HPC workloads
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "apptainer.list-images"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: pull-hpc-image
+          description: Pulls a container image for HPC workloads from Docker or OCI registry
+          hints:
+            readOnly: false
+            destructive: false
+          call: "apptainer.pull-image"
+          with:
+            source: "tools.source"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: run-scientific-workload
+          description: Starts an Apptainer container instance to run a scientific computing workload
+          hints:
+            readOnly: false
+            destructive: false
+          call: "apptainer.start-instance"
+          with:
+            imageId: "tools.imageId"
+            name: "tools.name"
+            command: "tools.command"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: monitor-running-instances
+          description: Monitors currently running Apptainer container instances
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "apptainer.list-instances"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,119 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Apptainer
+  description: >-
+    Vocabulary for the Apptainer container runtime platform, covering container image
+    lifecycle management, instance execution, and HPC integration for scientific
+    computing and research workloads.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - name: Apptainer API
+      namespace: apptainer
+      version: "1.0.0"
+      baseUrl: "https://api.apptainer.org/v1"
+      status: active
+
+  resources:
+    - name: images
+      description: Container images in SIF or sandbox format
+      api: Apptainer API
+      actions:
+        - list
+        - pull
+        - get
+        - delete
+    - name: instances
+      description: Running container instances
+      api: Apptainer API
+      actions:
+        - list
+        - start
+        - stop
+        - get
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: pull
+      httpMethod: POST
+      pattern: write
+    - name: start
+      httpMethod: POST
+      pattern: write
+    - name: stop
+      httpMethod: DELETE
+      pattern: destructive
+    - name: delete
+      httpMethod: DELETE
+      pattern: destructive
+
+  schemas:
+    core:
+      - name: ContainerImage
+        description: An Apptainer container image in SIF format for HPC workloads
+      - name: ContainerInstance
+        description: A running Apptainer container instance executing a workload
+
+  parameters:
+    identifiers:
+      - name: imageId
+        description: Unique container image identifier
+      - name: instanceId
+        description: Unique container instance identifier
+    filters:
+      - name: format
+        description: Image format filter (SIF or sandbox)
+      - name: name
+        description: Image or instance name filter
+
+  enums:
+    imageFormats:
+      - SIF
+      - sandbox
+    instanceStatuses:
+      - running
+      - stopped
+      - error
+    imageSources:
+      - docker://
+      - library://
+      - oras://
+      - shub://
+
+  authentication:
+    schemes:
+      - type: bearer
+        description: Bearer token authentication for API access
+
+capability:
+  workflows:
+    - name: HPC Container Management
+      description: Pull images and run reproducible scientific computing workloads
+      resources:
+        - images
+        - instances
+  personas:
+    - name: Research Scientist
+      description: Researcher running reproducible computational experiments in containers
+    - name: HPC Administrator
+      description: System administrator managing container infrastructure on HPC clusters
+  domains:
+    - name: Image Management
+      description: Managing container images for HPC workloads
+      resources:
+        - images
+    - name: Workload Execution
+      description: Starting and monitoring container instances for scientific computation
+      resources:
+        - instances
+
+  namespaces: []
+  binds: []

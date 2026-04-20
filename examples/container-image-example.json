@@ -1,0 +1,10 @@
+{
+  "imageId": "img-ubuntu-22.04-hpc",
+  "name": "ubuntu-hpc",
+  "version": "22.04",
+  "source": "docker://ubuntu:22.04",
+  "format": "SIF",
+  "size": 75497472,
+  "createdAt": "2026-01-10T08:00:00Z",
+  "sha256": "a1b2c3d4e5f6..."
+}

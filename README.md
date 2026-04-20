@@ -1,37 +1,56 @@
 # Apptainer (apptainer)
-Apptainer, formerly Singularity, is a Linux Foundation project providing a high-performance container runtime optimized for high-performance computing and scientific workloads. It enables reproducible, portable scientific computing with support for existing Docker/OCI containers and integration with HPC schedulers.
+
+Apptainer (formerly Singularity) is a Linux Foundation project providing a high-performance container runtime optimized for HPC and scientific workloads. It enables reproducible, portable scientific computing with support for Docker/OCI containers and integration with HPC schedulers like SLURM and PBS.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/apptainer/refs/heads/main/apis.yml)
 
-## Scope
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+## Scope of Coverage
 
-## Tags:
- - Containers, HPC, Scientific Computing, Linux Foundation
+| Item | Count |
+|------|-------|
+| APIs | 1 |
+| OpenAPI Specs | 1 |
+| JSON Schemas | 1 |
+| JSON Structures | 1 |
+| Examples | 1 |
+| JSON-LD Contexts | 1 |
+| Spectral Rulesets | 1 |
+| Naftiko Capabilities | 2 |
+| Vocabularies | 1 |
 
-## Timestamps
-- **Created:** 2026-03-16
-- **Modified:** 2026-03-16
+## APIs Covered
 
-## APIs
+- **Apptainer API** — Container image and instance management API for HPC and scientific computing workloads.
 
-### Apptainer API
-API for the Apptainer container runtime, providing programmatic access to high-performance container management optimized for HPC and scientific computing workloads with Docker/OCI container support.
+## Artifacts
 
-**Human URL:** [https://apptainer.org/docs/](https://apptainer.org/docs/)
+### OpenAPI Specifications
+- [openapi/apptainer-openapi.yaml](openapi/apptainer-openapi.yaml)
 
-#### Tags:
- - Containers, HPC
+### JSON Schemas
+- [json-schema/container-image-schema.json](json-schema/container-image-schema.json)
 
-#### Properties
-- [Documentation](https://apptainer.org/docs/)
+### JSON Structures
+- [json-structure/container-image-structure.json](json-structure/container-image-structure.json)
 
-## Common Properties
-- [Documentation](https://apptainer.org/docs/)
-- [GitHub Repository](https://github.com/apptainer)
+### Examples
+- [examples/container-image-example.json](examples/container-image-example.json)
+
+### JSON-LD
+- [json-ld/apptainer-context.jsonld](json-ld/apptainer-context.jsonld)
+
+### Spectral Rules
+- [rules/apptainer-spectral-rules.yml](rules/apptainer-spectral-rules.yml)
+
+### Naftiko Capabilities
+- [capabilities/shared/apptainer-api.yaml](capabilities/shared/apptainer-api.yaml)
+- [capabilities/hpc-container-management.yaml](capabilities/hpc-container-management.yaml)
+
+### Vocabulary
+- [vocabulary/apptainer-vocabulary.yaml](vocabulary/apptainer-vocabulary.yaml)
 
 ## Maintainers
-**FN:** Kin Lane
+
+**FN:** API Evangelist
+
 **Email:** info@apievangelist.com

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apptainer/main/json-structure/container-image-structure.json",
+  "title": "ContainerImage",
+  "description": "An Apptainer container image for HPC and scientific computing",
+  "type": "record",
+  "fields": [
+    {
+      "name": "imageId",
+      "type": "string",
+      "description": "Unique image identifier"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Container image name"
+    },
+    {
+      "name": "version",
+      "type": "string",
+      "description": "Image version"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "description": "Source URI"
+    },
+    {
+      "name": "format",
+      "type": "string",
+      "description": "Image format (SIF or sandbox)"
+    },
+    {
+      "name": "size",
+      "type": "int64",
+      "description": "Image size in bytes"
+    },
+    {
+      "name": "createdAt",
+      "type": "string",
+      "description": "Creation timestamp"
+    },
+    {
+      "name": "sha256",
+      "type": "string",
+      "description": "SHA-256 hash for verification"
+    }
+  ]
+}
