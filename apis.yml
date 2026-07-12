@@ -52,6 +52,10 @@ apis:
   description: API for the Apptainer container runtime, providing programmatic management of HPC container images and instances
     optimized for scientific computing workloads.
 common:
+- type: DomainSecurity
+  url: security/apptainer-domain-security.yml
+- type: Authentication
+  url: authentication/apptainer-authentication.yml
 - type: Documentation
   name: Apptainer Documentation
   description: Official documentation for Apptainer.
