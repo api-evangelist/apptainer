@@ -52,6 +52,8 @@ apis:
   description: API for the Apptainer container runtime, providing programmatic management of HPC container images and instances
     optimized for scientific computing workloads.
 common:
+- type: AgenticAccess
+  url: agentic-access/apptainer-agentic-access.yml
 - type: DomainSecurity
   url: security/apptainer-domain-security.yml
 - type: Authentication
