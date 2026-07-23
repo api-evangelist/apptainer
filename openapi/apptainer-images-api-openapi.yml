@@ -1,0 +1,181 @@
+openapi: 3.0.3
+info:
+  title: Apptainer Container Runtime Images API
+  description: API for the Apptainer container runtime, enabling programmatic management of HPC container images, instances, and execution for scientific computing workloads. Apptainer (formerly Singularity) is optimized for high-performance computing with support for Docker/OCI containers and HPC schedulers.
+  version: 1.0.0
+  contact:
+    name: Apptainer Project
+    url: https://apptainer.org/docs/
+  license:
+    name: BSD 3-Clause
+    url: https://opensource.org/licenses/BSD-3-Clause
+servers:
+- url: https://api.apptainer.org/v1
+  description: Apptainer API
+security:
+- bearerAuth: []
+tags:
+- name: Images
+  description: Container image management
+paths:
+  /images:
+    get:
+      operationId: listImages
+      summary: Apptainer - List Images
+      description: Returns a list of Apptainer container images available in the registry
+      tags:
+      - Images
+      parameters:
+      - name: format
+        in: query
+        description: Filter by image format (SIF or sandbox)
+        schema:
+          type: string
+          enum:
+          - SIF
+          - sandbox
+      - name: name
+        in: query
+        description: Filter by image name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of container images
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContainerImage'
+              examples:
+                ListImagesExample:
+                  x-microcks-default: true
+                  summary: Example container images list
+                  value:
+                    data:
+                    - imageId: img-ubuntu-22.04-hpc
+                      name: ubuntu-hpc
+                      version: '22.04'
+                      format: SIF
+                      size: 75497472
+        '401':
+          description: Unauthorized - invalid or missing authentication token
+    post:
+      operationId: pullImage
+      summary: Apptainer - Pull Image
+      description: Pulls a container image from a source URI into the local registry
+      tags:
+      - Images
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                source:
+                  type: string
+                  description: Source URI for the container image (docker://, library://, oras://)
+                name:
+                  type: string
+                  description: Local name for the pulled image
+            examples:
+              PullImageExample:
+                x-microcks-default: true
+                summary: Example image pull request
+                value:
+                  source: docker://ubuntu:22.04
+                  name: ubuntu-hpc
+      responses:
+        '201':
+          description: Image pulled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerImage'
+        '400':
+          description: Invalid source URI
+        '401':
+          description: Unauthorized - invalid or missing authentication token
+  /images/{imageId}:
+    get:
+      operationId: getImage
+      summary: Apptainer - Get Image
+      description: Returns details for a specific container image
+      tags:
+      - Images
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        description: Unique container image identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Container image details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerImage'
+              examples:
+                GetImageExample:
+                  x-microcks-default: true
+                  summary: Example image detail
+                  value:
+                    imageId: img-ubuntu-22.04-hpc
+                    name: ubuntu-hpc
+                    version: '22.04'
+                    source: docker://ubuntu:22.04
+                    format: SIF
+                    size: 75497472
+                    createdAt: '2026-01-10T08:00:00Z'
+                    sha256: a1b2c3d4e5f6
+        '404':
+          description: Image not found
+        '401':
+          description: Unauthorized - invalid or missing authentication token
+components:
+  schemas:
+    ContainerImage:
+      title: ContainerImage
+      description: An Apptainer container image in SIF or sandbox format
+      type: object
+      properties:
+        imageId:
+          type: string
+          description: Unique container image identifier
+        name:
+          type: string
+          description: Container image name
+        version:
+          type: string
+          description: Image version
+        source:
+          type: string
+          description: Source URI (docker://, library://, oras://)
+        format:
+          type: string
+          enum:
+          - SIF
+          - sandbox
+          description: Container image format
+        size:
+          type: integer
+          description: Image size in bytes
+        createdAt:
+          type: string
+          format: date-time
+          description: Image creation timestamp
+        sha256:
+          type: string
+          description: SHA-256 hash for verification
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

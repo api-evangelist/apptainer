@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Apptainer Container Runtime Images Instances API
+  description: API for the Apptainer container runtime, enabling programmatic management of HPC container images, instances, and execution for scientific computing workloads. Apptainer (formerly Singularity) is optimized for high-performance computing with support for Docker/OCI containers and HPC schedulers.
+  version: 1.0.0
+  contact:
+    name: Apptainer Project
+    url: https://apptainer.org/docs/
+  license:
+    name: BSD 3-Clause
+    url: https://opensource.org/licenses/BSD-3-Clause
+servers:
+- url: https://api.apptainer.org/v1
+  description: Apptainer API
+security:
+- bearerAuth: []
+tags:
+- name: Instances
+  description: Running container instance management
+paths:
+  /instances:
+    get:
+      operationId: listInstances
+      summary: Apptainer - List Instances
+      description: Returns a list of running Apptainer container instances
+      tags:
+      - Instances
+      responses:
+        '200':
+          description: A list of running instances
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContainerInstance'
+              examples:
+                ListInstancesExample:
+                  x-microcks-default: true
+                  summary: Example instances list
+                  value:
+                    data:
+                    - instanceId: inst-001
+                      name: my-simulation
+                      imageId: img-ubuntu-22.04-hpc
+                      status: running
+                      startedAt: '2026-04-19T09:00:00Z'
+        '401':
+          description: Unauthorized - invalid or missing authentication token
+    post:
+      operationId: startInstance
+      summary: Apptainer - Start Instance
+      description: Starts a new container instance from an Apptainer image
+      tags:
+      - Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageId:
+                  type: string
+                  description: Image to run as a container instance
+                name:
+                  type: string
+                  description: Name for the container instance
+                command:
+                  type: string
+                  description: Optional command to run in the container
+            examples:
+              StartInstanceExample:
+                x-microcks-default: true
+                summary: Example instance start request
+                value:
+                  imageId: img-ubuntu-22.04-hpc
+                  name: my-simulation
+                  command: /bin/bash run_simulation.sh
+      responses:
+        '201':
+          description: Instance started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerInstance'
+        '400':
+          description: Invalid request body
+        '401':
+          description: Unauthorized - invalid or missing authentication token
+components:
+  schemas:
+    ContainerInstance:
+      title: ContainerInstance
+      description: A running Apptainer container instance
+      type: object
+      properties:
+        instanceId:
+          type: string
+          description: Unique instance identifier
+        name:
+          type: string
+          description: Instance name
+        imageId:
+          type: string
+          description: Container image the instance runs
+        status:
+          type: string
+          enum:
+          - running
+          - stopped
+          - error
+          description: Instance status
+        startedAt:
+          type: string
+          format: date-time
+          description: Instance start timestamp
+        stoppedAt:
+          type: string
+          format: date-time
+          description: Instance stop timestamp
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
