@@ -1,0 +1,16 @@
+{
+  "provider": "apptainer",
+  "sources": [
+    "apptainer-images-api-openapi.yml",
+    "apptainer-instances-api-openapi.yml"
+  ],
+  "outputs": [
+    "apptainer-images-api-openapi.yml",
+    "apptainer-instances-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
