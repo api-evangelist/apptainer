@@ -56,10 +56,6 @@ apis:
     url: rules/apptainer-spectral-rules.yml
   - type: Vocabulary
     url: vocabulary/apptainer-vocabulary.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apptainer-images.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apptainer-instances.yaml
 - aid: apptainer:apptainer-instances-api
   name: Apptainer Instances API
   description: Running container instance management
@@ -85,11 +81,17 @@ apis:
     url: rules/apptainer-spectral-rules.yml
   - type: Vocabulary
     url: vocabulary/apptainer-vocabulary.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apptainer-images.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/apptainer-instances.yaml
 common:
+- type: IssueTracker
+  url: https://github.com/apptainer/apptainer/issues
+- type: Releases
+  url: https://github.com/apptainer/apptainer/releases
+- type: SecurityPolicy
+  url: https://github.com/apptainer/apptainer/blob/main/SECURITY.md
+- type: CodeOfConduct
+  url: https://github.com/apptainer/apptainer/blob/main/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/apptainer/apptainer/blob/main/CONTRIBUTING.md
 - type: AgenticAccess
   url: agentic-access/apptainer-agentic-access.yml
 - type: DomainSecurity
