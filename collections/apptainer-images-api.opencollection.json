@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apptainer Container Runtime Images API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apptainer - List Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apptainer.org/v1/images",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Filter by image format (SIF or sandbox)"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by image name"
+              }
+            ]
+          },
+          "docs": "Returns a list of Apptainer container images available in the registry"
+        },
+        {
+          "info": {
+            "name": "Apptainer - Pull Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apptainer.org/v1/images",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pulls a container image from a source URI into the local registry"
+        },
+        {
+          "info": {
+            "name": "Apptainer - Get Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apptainer.org/v1/images/:imageId",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "Unique container image identifier"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific container image"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
