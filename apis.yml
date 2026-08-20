@@ -24,6 +24,12 @@ tags:
 - Containers
 - HPC
 - Scientific Computing
+- Open-Source
+- Linux Foundation
+tags_raw:
+- Containers
+- HPC
+- Scientific Computing
 - Open Source
 - Linux Foundation
 created: '2026-03-16'
@@ -36,6 +42,8 @@ apis:
   description: Container image management
   humanURL: https://apptainer.org/docs/
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
