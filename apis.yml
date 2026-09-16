@@ -1,8 +1,9 @@
 aid: apptainer
 name: Apptainer
-description: Apptainer, formerly Singularity, is a Linux Foundation project providing a high-performance container runtime
-  optimized for high-performance computing and scientific workloads. It enables reproducible, portable scientific computing
-  with support for existing Docker/OCI containers and integration with HPC schedulers.
+description: Apptainer, formerly Singularity, is a Linux Foundation project providing a high-performance
+  container runtime optimized for high-performance computing and scientific workloads. It enables reproducible,
+  portable scientific computing with support for existing Docker/OCI containers and integration with HPC
+  schedulers.
 type: Index
 deliveryModel:
   model: unknown
@@ -46,7 +47,7 @@ tags_raw:
 - Open Source
 - Linux Foundation
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/apptainer/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
@@ -103,6 +104,8 @@ apis:
   - type: Vocabulary
     url: vocabulary/apptainer-vocabulary.yaml
 common:
+- type: Website
+  url: https://apptainer.org
 - type: IssueTracker
   url: https://github.com/apptainer/apptainer/issues
 - type: Releases
