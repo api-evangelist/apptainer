@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apptainer Container Runtime Images API
   description: API for the Apptainer container runtime, enabling programmatic management of HPC container images, instances, and execution for scientific computing workloads. Apptainer (formerly Singularity) is optimized for high-performance computing with support for Docker/OCI containers and HPC schedulers.

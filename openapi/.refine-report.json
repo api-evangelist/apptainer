@@ -1,8 +1,7 @@
 {
   "provider": "apptainer",
   "sources": [
-    "apptainer-images-api-openapi.yml",
-    "apptainer-instances-api-openapi.yml"
+    "_original/apptainer-openapi.yaml"
   ],
   "outputs": [
     "apptainer-images-api-openapi.yml",
@@ -11,6 +10,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apptainer-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "apptainer-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apptainer-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
